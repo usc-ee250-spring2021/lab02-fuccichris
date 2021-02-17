@@ -1,8 +1,9 @@
 """ EE 250L Lab 02: GrovePi Sensors
 
-List team members here.
+List team members here. None (received lab kit late)
 
 Insert Github repository link here.
+Link: https://github.com/usc-ee250-spring2021/lab02-fuccichris/tree/lab02
 """
 
 """python3 interpreters in Ubuntu (and other linux distros) will look in a 
@@ -18,9 +19,9 @@ import sys
 import time
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `import grovepi`
-sys.path.append('~/Dexter/GrovePi/Software/Python/')
+sys.path.append('../../GrovePi/Software/Python/')
 # This append is to support importing the LCD library.
-sys.path.append('~/Dexter/GrovePi/Software/Python/grove_rgb_lcd')
+sys.path.append('../../GrovePi/Software/Python/grove_rgb_lcd')
 
 import grovepi
 from grove_rgb_lcd import *
@@ -31,7 +32,7 @@ be true"""
 if __name__ == '__main__':
     PORT = 4    # D4
     potentiometer = 2 #A2
-    
+    setText("")
     while True:
         #So we do not poll the sensors too quickly which may introduce noise,
         #sleep for a reasonable time of 200ms between each iteration.
@@ -46,10 +47,10 @@ if __name__ == '__main__':
         #TODO: print information to screen
         if(currentDist > distance):
             #setRGB_norefresh(255,0,0)
-            setText_norefresh(str(currentDist) + "cm             " + str(distance) + "cm")
-
+            setText_norefresh(str(distance) + "cm               \n" + str(currentDist) + "cm")
+            setRGB(0,255,0)
         else:
             #setRGB_norefresh(0,255,0)
-            setText_norefresh(str(currentDist) + "cm " + "OBJ PRESS   " + str(distance) + "cm")
-
+            setText_norefresh(str(distance) + "cm " + "OBJ PRESS\n" + str(currentDist) + "cm")
+            setRGB(255,0,0)
         

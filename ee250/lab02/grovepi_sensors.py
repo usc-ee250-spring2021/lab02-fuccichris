@@ -47,10 +47,10 @@ if __name__ == '__main__':
         #TODO: print information to screen
         if(currentDist > distance):
             #setRGB_norefresh(255,0,0)
-            setText_norefresh(str(distance) + "cm               \n" + str(currentDist) + "cm")
+            setText_norefresh("%4dcm          \n%3dcm" % (distance, currentDist))
             setRGB(0,255,0)
         else:
             #setRGB_norefresh(0,255,0)
-            setText_norefresh(str(distance) + "cm " + "OBJ PRESS\n" + str(currentDist) + "cm")
+            setText_norefresh("%4dcm %s\n%3dcm" % (distance,"OBJ PRESS",currentDist))
             setRGB(255,0,0)
         

@@ -18,9 +18,9 @@ import sys
 import time
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `import grovepi`
-sys.path.append('~/Dexter/Software/Python/')
+sys.path.append('~/Dexter/GrovePi/Software/Python/')
 # This append is to support importing the LCD library.
-sys.path.append('~/Dexter/Software/Python/grove_rgb_lcd')
+sys.path.append('~/Dexter/GrovePi/Software/Python/grove_rgb_lcd')
 
 import grovepi
 from grove_rgb_lcd import *
@@ -36,15 +36,20 @@ if __name__ == '__main__':
         #So we do not poll the sensors too quickly which may introduce noise,
         #sleep for a reasonable time of 200ms between each iteration.
         time.sleep(0.2)
-
+        
         #Measures current distance
         currentDist = grovepi.ultrasonicRead(PORT)
-        
+
         #Measures threshold
         distance = grovepi.analogRead(potentiometer)
         
-        #Determine whether past threshold
+        #TODO: print information to screen
         if(currentDist > distance):
-            setText_norefresh(str(currentDist))
+            #setRGB_norefresh(255,0,0)
+            setText_norefresh(str(currentDist) + "cm             " + str(distance) + "cm")
 
-        print(grovepi.ultrasonicRead(PORT))
+        else:
+            #setRGB_norefresh(0,255,0)
+            setText_norefresh(str(currentDist) + "cm " + "OBJ PRESS   " + str(distance) + "cm")
+
+        
